@@ -37,8 +37,49 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    'django.contrib.sites',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.github',
+
+    'rest_framework',
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
+    'rest_framework.authtoken',
+    
     'backend',
 ]
+
+print("💡 INSTALLED_APPS loaded:", INSTALLED_APPS)
+
+SITE_ID = 1
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_EMAIL_REQUIRED = True
+
+REST_USE_JWT = True
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': '1016303995589-0n373v73d675lm26tc4grta8b2u4ckbc.apps.googleusercontent.com',
+            'secret': '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',
+            'key': ''
+        }
+    },
+    'github': {
+        'APP': {
+            'client_id': 'Ov23lifskKIntKTVK33y',
+            'secret': '911661c7982f59d32d4a684efcb084f3a2644ebe',
+            'key': ''
+        }
+    }
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -55,7 +96,7 @@ ROOT_URLCONF = 'AuthenticationProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
